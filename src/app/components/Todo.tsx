@@ -35,14 +35,10 @@ const Todo: FunctionComponent<TodoProps> = ({ todo }) => {
 					id='completed'
 					className='mt-2'
 					checked={attributes.completed}
-					onClick={() =>
-						execute({ id: id, completed: !attributes.completed })
-					}
+					onClick={() => execute({ id: id, completed: !attributes.completed })}
 				/>
 				<div>
-					<h3 className='truncate text-lg font-semibold'>
-						{attributes.title}
-					</h3>
+					<h3 className='truncate text-lg font-semibold'>{attributes.title}</h3>
 					<p className='text-wrap'>{attributes.body}</p>
 				</div>
 			</div>

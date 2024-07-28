@@ -40,9 +40,7 @@ const AddTodoDialog: FunctionComponent = () => {
 			<DialogContent className='w-4/5 items-start rounded-lg sm:max-w-[600px]'>
 				<form ref={ref} action={execute}>
 					<DialogHeader>
-						<DialogTitle className='text-left'>
-							New Todo
-						</DialogTitle>
+						<DialogTitle className='text-left'>New Todo</DialogTitle>
 					</DialogHeader>
 
 					<div className='mb-6 mt-6 flex flex-col gap-4 sm:mt-8 sm:gap-6 md:gap-8'>
@@ -53,17 +51,15 @@ const AddTodoDialog: FunctionComponent = () => {
 								name='title'
 								placeholder='Enter todo title here...'
 							/>
-							{result.validationErrors?.title?._errors?.map(
-								(error, idx) => (
-									<Label
-										key={idx}
-										htmlFor='title'
-										className='text-sm text-destructive'
-									>
-										{error}
-									</Label>
-								)
-							)}
+							{result.validationErrors?.title?._errors?.map((error, idx) => (
+								<Label
+									key={idx}
+									htmlFor='title'
+									className='text-sm text-destructive'
+								>
+									{error}
+								</Label>
+							))}
 						</div>
 						<div className='grid w-full items-center gap-2'>
 							<Label htmlFor='body'>Body</Label>
@@ -72,17 +68,15 @@ const AddTodoDialog: FunctionComponent = () => {
 								name='body'
 								placeholder='Enter todo body here...'
 							/>
-							{result.validationErrors?.body?._errors?.map(
-								(error, idx) => (
-									<Label
-										key={idx}
-										htmlFor='title'
-										className='text-sm text-destructive'
-									>
-										{error}
-									</Label>
-								)
-							)}
+							{result.validationErrors?.body?._errors?.map((error, idx) => (
+								<Label
+									key={idx}
+									htmlFor='title'
+									className='text-sm text-destructive'
+								>
+									{error}
+								</Label>
+							))}
 						</div>
 						<div className='flex items-center space-x-2'>
 							<Checkbox id='completed' name='completed' />

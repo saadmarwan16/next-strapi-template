@@ -19,9 +19,7 @@ const Header: FunctionComponent = () => {
 
 					<div className='hidden max-w-[500px] flex-col gap-0 sm:flex'>
 						<span className='truncate text-sm'>Shad Mirza</span>
-						<span className='truncate text-xs text-gray-500'>
-							@shadcn
-						</span>
+						<span className='truncate text-xs text-gray-500'>@shadcn</span>
 					</div>
 				</div>
 			</div>
