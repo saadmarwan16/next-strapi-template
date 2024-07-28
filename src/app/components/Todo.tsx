@@ -29,8 +29,8 @@ const Todo: FunctionComponent<TodoProps> = ({ todo }) => {
 	});
 
 	return (
-		<div className='rounded-lg bg-gray-100 px-4 py-2 flex gap-4 justify-between items-center'>
-			<div className='flex gap-3 items-start'>
+		<div className='flex items-center justify-between gap-4 rounded-lg bg-gray-100 px-4 py-2'>
+			<div className='flex items-start gap-3'>
 				<Checkbox
 					id='completed'
 					className='mt-2'
@@ -40,7 +40,7 @@ const Todo: FunctionComponent<TodoProps> = ({ todo }) => {
 					}
 				/>
 				<div>
-					<h3 className='text-lg font-semibold truncate'>
+					<h3 className='truncate text-lg font-semibold'>
 						{attributes.title}
 					</h3>
 					<p className='text-wrap'>{attributes.body}</p>
