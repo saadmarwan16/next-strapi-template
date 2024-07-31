@@ -1,11 +1,35 @@
 import Header from './components/Header';
 import AddTodoDialog from './components/AddTodoDialog';
 import Todos from './components/Todos';
-import { Suspense } from 'react';
+import { FunctionComponent, Suspense } from 'react';
 import TodoSkeleton from './components/TodoSkeleton';
 import SortTodos from './components/SortTodos';
+import qs from 'qs';
 
-const Home = () => {
+interface HomeProps {
+	searchParams: {
+		sort?: string;
+		filter?: string;
+	};
+}
+
+const Home: FunctionComponent<HomeProps> = ({ searchParams }) => {
+	let filter: boolean | undefined = undefined;
+	if (searchParams.filter === 'completed') filter = true;
+	if (searchParams.filter === 'uncompleted') filter = false;
+
+	const query = qs.stringify(
+		{
+			sort: searchParams.sort,
+			filters: {
+				completed: {
+					$eq: filter,
+				},
+			},
+		},
+		{ encodeValuesOnly: true }
+	);
+
 	return (
 		<main>
 			<Header />
@@ -16,11 +40,11 @@ const Home = () => {
 						<AddTodoDialog />
 					</div>
 
-					<SortTodos />
+					<SortTodos default={searchParams.sort ?? searchParams.filter} />
 				</div>
 
 				<Suspense fallback={<TodoSkeleton />}>
-					<Todos />
+					<Todos query={query} />
 				</Suspense>
 			</section>
 		</main>

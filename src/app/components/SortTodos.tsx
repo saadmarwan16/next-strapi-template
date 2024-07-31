@@ -6,29 +6,40 @@ import {
 	SelectContent,
 	SelectGroup,
 	SelectItem,
-	SelectLabel,
 	SelectTrigger,
 	SelectValue,
 } from '@/components/ui/select';
+import { useRouter } from 'next/navigation';
 
-interface SortTodosProps {}
+interface SortTodosProps {
+	default?: string;
+}
 
-const SortTodos: FunctionComponent<SortTodosProps> = () => {
+const SortTodos: FunctionComponent<SortTodosProps> = (props) => {
+	const router = useRouter();
+
 	return (
 		<div className='flex items-center gap-3'>
-			<h3 className='text-lg'>Sort</h3>
-			<Select onValueChange={(val) => console.log('Select changed:', val)}>
+			<h3 className='text-lg'>Sort & Filter</h3>
+			<Select
+				defaultValue={props.default}
+				onValueChange={(val) => {
+					if (val === 'title:asc' || val === 'title:desc') {
+						router.push(`/?sort=${val}`);
+					} else if (val === 'completed' || val === 'uncompleted') {
+						router.push(`/?filter=${val}`);
+					}
+				}}
+			>
 				<SelectTrigger className='w-[180px]'>
-					<SelectValue placeholder='Select a fruit' />
+					<SelectValue placeholder='Select sort parameter' />
 				</SelectTrigger>
 				<SelectContent>
 					<SelectGroup>
-						<SelectLabel>Fruits</SelectLabel>
-						<SelectItem value='apple'>Apple</SelectItem>
-						<SelectItem value='banana'>Banana</SelectItem>
-						<SelectItem value='blueberry'>Blueberry</SelectItem>
-						<SelectItem value='grapes'>Grapes</SelectItem>
-						<SelectItem value='pineapple'>Pineapple</SelectItem>
+						<SelectItem value='title:asc'>Title (asc)</SelectItem>
+						<SelectItem value='title:desc'>Title (desc)</SelectItem>
+						<SelectItem value='completed'>Completed</SelectItem>
+						<SelectItem value='uncompleted'>Uncompleted</SelectItem>
 					</SelectGroup>
 				</SelectContent>
 			</Select>

@@ -3,12 +3,14 @@ import { TodoSchema } from '@/types/todos';
 import { fetchWithZod } from '@/lib/fetchWithZod';
 import Todo from './Todo';
 
-interface TodosProps {}
+interface TodosProps {
+	query: string;
+}
 
-const Todos: FunctionComponent<TodosProps> = async () => {
+const Todos: FunctionComponent<TodosProps> = async ({ query }) => {
 	const result = await fetchWithZod(
 		TodoSchema,
-		'http://localhost:1337/api/todos'
+		`http://localhost:1337/api/todos?${query}`
 	);
 
 	return (

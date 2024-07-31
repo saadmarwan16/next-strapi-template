@@ -6,6 +6,7 @@ import { TTodoItem } from '@/types/todos';
 import DeleteTodoButton from './DeleteTodoButton';
 import { useOptimisticAction } from 'next-safe-action/hooks';
 import { updateCompleted } from '../actions';
+import UpdateTodoDialog from './UpdateTodoDialog';
 
 interface TodoProps {
 	todo: TTodoItem;
@@ -38,7 +39,7 @@ const Todo: FunctionComponent<TodoProps> = ({ todo }) => {
 					onClick={() => execute({ id: id, completed: !attributes.completed })}
 				/>
 				<div>
-					<h3 className='truncate text-lg font-semibold'>{attributes.title}</h3>
+					<UpdateTodoDialog todo={todo} />
 					<p className='text-wrap'>{attributes.body}</p>
 				</div>
 			</div>

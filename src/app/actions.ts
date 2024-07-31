@@ -8,6 +8,7 @@ import {
 	DeleteTodoSchema,
 	TodoItemSchema,
 	UpdateCompletedSchema,
+	UpdateTodoSchema,
 } from '@/types/todos';
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
@@ -44,6 +45,28 @@ export const updateCompleted = actionClient
 					data: {
 						completed: parsedInput.completed,
 					},
+				}),
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			}
+		);
+		revalidatePath('/');
+
+		return ActionMessages.UPDATE_COMPLETED_SUCCESS;
+	});
+
+export const updateTodo = actionClient
+	.schema(UpdateTodoSchema)
+	.action(async ({ parsedInput }) => {
+		const { id, ...data } = parsedInput;
+		await fetchWithZod(
+			z.object({ data: TodoItemSchema }),
+			`http://localhost:1337/api/todos/${parsedInput.id}`,
+			{
+				method: 'PUT',
+				body: JSON.stringify({
+					data,
 				}),
 				headers: {
 					'Content-Type': 'application/json',

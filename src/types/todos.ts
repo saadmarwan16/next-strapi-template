@@ -26,6 +26,27 @@ export const UpdateCompletedSchema = z.object({
 	completed: z.boolean(),
 });
 
+export const UpdateTodoSchema = zfd.formData({
+	id: zfd.numeric(z.number().min(1, 'Id must be positive')),
+	title: zfd.text(
+		z
+			.string({
+				required_error: 'Title is required',
+			})
+			.min(4, 'Title must be at least 4 characters long')
+			.max(40, 'Title must be at most 40 characters long')
+	),
+	body: zfd.text(
+		z
+			.string({
+				required_error: 'Body is required',
+			})
+			.min(16, 'Title must be at least 16 characters long')
+			.max(160, 'Title must be at most 160 characters long')
+	),
+	completed: zfd.checkbox(),
+});
+
 export const DeleteTodoSchema = z.number();
 
 export const TodoItemSchema = z.object({
