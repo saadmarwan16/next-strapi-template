@@ -8,11 +8,13 @@ export const env = createEnv({
 			.default('development'),
 	},
 	client: {
-		// NEXT_PUBLIC_CLIENTVAR: z.string(),
+		NEXT_PUBLIC_BACKEND_URL: z.string(),
+		NEXT_PUBLIC_API_URL: z.string(),
 	},
 	runtimeEnv: {
 		NODE_ENV: process.env.NODE_ENV,
-		// NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
+		NEXT_PUBLIC_BACKEND_URL: process.env.NEXT_PUBLIC_BACKEND_URL,
+		NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
 	},
 	skipValidation: !!process.env.SKIP_ENV_VALIDATION,
 	emptyStringAsUndefined: true,
